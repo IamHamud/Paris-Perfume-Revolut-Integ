@@ -1,37 +1,6 @@
-# Paris Perfumes - Luxury Ecommerce with Revolut### Step 3: Run the Application
+# Paris Perfumes - Luxury Ecommerce with Revolut Integration
 
-*## 📱 Usage
-
-1. **Browse Products**: View Rose Noir ($120) and Golden Elegance ($95)
-2. **Add to Cart**: Click "Add to Cart" or use "Buy Now" for instant checkout
-3. **Payment**: Revolut popup opens for secure card detail collection
-4. **Testing**: Use Revolut's test cards for sandbox payments
-
-## 🧪 Testing with Revolut
-
-### Test for Successful Payments
-
-Use the following test cards to simulate successful payments in the Sandbox environment. You can also use them to test the use case of charging a customer's saved payment method.
-
-Use any 3-digit CVV and any future expiry date (MM/YY).
-
-| Card PAN | Brand |
-|----------|-------|
-| 4929420573595709 | VISA |
-| 5281438801804148 | MASTERCARD |
-
-For more test cards, visit: [Revolut Test Cards Documentation](https://developer.revolut.com/docs/guides/accept-payments/get-started/test-implementation/test-cards)terminals running simultaneously:**
-
-**Terminal 1 - Backend Server:**
-```bash
-cd "/Users/iamhamud/Desktop/revolut-checkout-example-main/paris-perfumes/server" && node app.js
-```
-*Backend runs on: http://localhost:5177*
-
-**Terminal 2 - Frontend Server:**
-```bash
-cd "/Users/iamhamud/Desktop/revolut-checkout-example-main/paris-perfumes/frontend" && python3 -m http.server 3000
-```utiful single-page luxury perfume ecommerce website showcasing **Revolut Card Pop-up Integration** for secure payment processing.
+Beautiful single-page luxury perfume ecommerce website showcasing **Revolut Card Pop-up Integration** for secure payment processing.
 
 ## 🌟 Project Overview
 
@@ -43,7 +12,7 @@ This project demonstrates the implementation of Revolut's Card Pop-up checkout s
 - **Responsive Design**: Works seamlessly across all devices
 - **Auto-scrolling Carousel**: Beautiful product showcase
 
-## � Technical Implementation
+## 🔧 Technical Implementation
 
 ### Revolut Integration Features:
 - **Card Pop-up Widget**: Uses `@revolut/checkout` SDK for secure payment collection
@@ -100,7 +69,7 @@ Open your browser and go to: **http://localhost:3000**
 
 ---
 
-##  Usage
+## 📱 Usage
 
 1. **Browse Products**: View Rose Noir ($120) and Golden Elegance ($95)
 2. **Add to Cart**: Click "Add to Cart" or use "Buy Now" for instant checkout
@@ -109,9 +78,18 @@ Open your browser and go to: **http://localhost:3000**
 
 ## 🧪 Testing with Revolut
 
-For testing payments, use Revolut's test card numbers:
-- **Successful Payment**: `4242 4242 4242 4242`
-- **Declined Payment**: `4000 0000 0000 0002`
+### Test for Successful Payments
+
+Use the following test cards to simulate successful payments in the Sandbox environment. You can also use them to test the use case of charging a customer's saved payment method.
+
+Use any 3-digit CVV and any future expiry date (MM/YY).
+
+| Card PAN | Brand |
+|----------|-------|
+| 4929420573595709 | VISA |
+| 5281438801804148 | MASTERCARD |
+
+For more test cards, visit: [Revolut Test Cards Documentation](https://developer.revolut.com/docs/guides/accept-payments/get-started/test-implementation/test-cards)
 
 ## 📁 Project Structure
 
