@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paris Perfumes - Luxury Fragrances</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://unpkg.com/@revolut/checkout@latest/umd/checkout.js"></script>
+  <link rel="stylesheet" href="src/css/style.css" />
+  
+  <style>
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    .animate-scroll {
+      animation: scroll 40s linear infinite;
+    }
+    
+    .carousel-track {
+      width: 200%;
+    }
+    
+    .carousel-item {
+      flex: 0 0 300px;
+      margin-right: 2rem;
+    }
+  </style>
+</head>
+<body class="font-sans bg-white text-gray-800">
+
+  <!-- NAVBAR -->
+    <!-- NAVBAR -->
+  <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold text-gray-800">✨ Paris Perfumes</div>
+      <div class="flex items-center space-x-6">
+        <button onclick="openCart()" class="relative text-gray-700 hover:text-rose-500 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CART DRAWER -->
+  <div id="cartDrawer" class="fixed top-0 right-0 w-96 h-full overflow-y-auto bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300">
+    <div class="p-6 flex justify-between items-center border-b bg-gradient-to-r from-rose-50 to-pink-50">
+      <h2 class="text-xl font-bold text-gray-800">YOUR BAG</h2>
+      <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="p-6 border-b" id="cartItem"></div>
+    <div class="p-6 bg-gray-50">
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-600">Subtotal</span>
+        <span id="cartSubtotal" class="font-semibold"></span>
+      </div>
+      <div class="flex justify-between mb-4 text-sm text-gray-500">
+        <span>Estimated Shipping</span>
+        <span>Free</span>
+      </div>
+      <div class="flex justify-between font-bold text-lg mb-6 text-gray-800 border-t pt-4">
+        <span>Total</span>
+        <span id="cartTotal"></span>
+      </div>
+      <!-- Quick Checkout Button -->
+      <button id="cart-quick-checkout" onclick="quickCheckoutCart()" class="w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-3 rounded-xl mb-3 font-semibold hover:from-rose-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg">
+        💳 QUICK CHECKOUT
+      </button>
+      <a href="index.html" class="block text-center bg-gray-200 text-gray-800 py-3 rounded-xl hover:bg-gray-300 transition-colors">CONTINUE SHOPPING</a>
+    </div>
+  </div>
+
+  <div id="backdrop" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="closeCart()"></div>
+
+<!-- HERO SECTION (Video Background) -->
+<section class="relative w-full h-screen overflow-hidden">
+  <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+    <source src="src/images/19167173-uhd_2160_3840_60fps.mp4" type="video/mp4">
+  </video>
+  <div class="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
+  <div class="relative z-10 flex items-center justify-center h-full">
+    <div class="text-center text-white max-w-4xl px-6">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-wide">Paris Perfumes</h1>
+      <p class="mb-8 text-xl md:text-2xl text-gray-200 font-light">Discover the essence of luxury and elegance</p>
+      <p class="mb-12 text-lg text-gray-300 max-w-2xl mx-auto">Each fragrance tells a story of sophistication, crafted with the finest ingredients from around the world</p>
+      <a href="#products" class="inline-block bg-gradient-to-r from-rose-500 to-pink-500 text-white px-12 py-4 font-semibold text-lg rounded-full hover:from-rose-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg">
+        EXPLORE COLLECTION
+      </a>
+    </div>
+  </div>
+  <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>
+
+  <!-- BEAUTIFUL CAROUSEL SECTION -->
+  <section class="py-16 bg-white overflow-hidden">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Artistry in Every Bottle</h2>
+      <p class="text-lg text-gray-600">Discover the beauty behind our fragrance inspirations</p>
+    </div>
+    <div class="carousel-container relative">
+      <div class="carousel-track flex animate-scroll" id="carousel-track">
+        <!-- Carousel items loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section class="py-20 px-6 bg-gradient-to-br from-gray-50 to-white" id="products">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Signature Collection</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Our most exquisite fragrances, crafted with the finest ingredients</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto" id="product-grid">
+        <!-- Loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+ <!-- FOOTER -->
+<footer class="bg-gradient-to-r from-gray-900 to-black text-white px-6 py-16">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+    <div class="col-span-1 md:col-span-2">
+      <h3 class="text-2xl font-bold mb-4">✨ Paris Perfumes</h3>
+      <p class="text-gray-300 mb-4 max-w-md">Discover the essence of luxury and elegance with our handcrafted perfume collection, inspired by the romance of Paris.</p>
+      <div class="flex space-x-4">
+        <div class="w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-rose-400 transition-colors">
+          <span class="text-sm">f</span>
+        </div>
+        <div class="w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-rose-400 transition-colors">
+          <span class="text-sm">i</span>
+        </div>
+        <div class="w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-rose-400 transition-colors">
+          <span class="text-sm">t</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h5 class="font-bold mb-4 text-gray-100">CUSTOMER CARE</h5>
+      <p class="mb-2 text-gray-300 hover:text-white cursor-pointer transition-colors">Contact Us</p>
+      <p class="mb-2 text-gray-300 hover:text-white cursor-pointer transition-colors">Fragrance Guide</p>
+      <p class="mb-2 text-gray-300 hover:text-white cursor-pointer transition-colors">Return Policy</p>
+      <p class="mb-2 text-gray-300 hover:text-white cursor-pointer transition-colors">Shipping Info</p>
+    </div>
+    <div>
+      <h5 class="font-bold mb-4 text-gray-100">ABOUT US</h5>
+      <p class="mb-2 text-gray-300 hover:text-white cursor-pointer transition-colors">Our Story</p>
+      <p class="mb-2 text-gray-300 hover:text-white cursor-pointer transition-colors">Sustainability</p>
+      <p class="mb-2 text-gray-300 hover:text-white cursor-pointer transition-colors">Press</p>
+      <p class="mb-2 text-gray-300 hover:text-white cursor-pointer transition-colors">Careers</p>
+    </div>
+  </div>
+  <div class="border-t border-gray-800 pt-8 text-center">
+    <p class="text-gray-400">&copy; 2025 Paris Perfumes. All rights reserved.</p>
+  </div>
+</footer>
+
+
+  <script>
+    feather.replace();
+
+    function handleProductClick(name, image, price, reviews) {
+      localStorage.setItem('selectedProduct', JSON.stringify({ name, image, price, reviews }));
+      window.location.href = 'src/pages/product.html';
+    }
+    // This makes the addToCart function available from main.js in global scope
+    window.addToCart = function(item) {
+      if (typeof window.addToCartFromMain === 'function') {
+        window.addToCartFromMain(item);
+      }
+    }
+  </script>
+  <script src="src/js/main.js"></script>
+</body>
+</html>
