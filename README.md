@@ -2,6 +2,14 @@
 
 Beautiful single-page luxury perfume ecommerce website showcasing **Revolut Card Pop-up Integration** for secure payment processing.
 
+
+
+https://github.com/user-attachments/assets/07e671bb-6905-4509-99cb-d3b8cbfeb0f4
+
+
+
+
+
 ## 🌟 Project Overview
 
 This project demonstrates the implementation of Revolut's Card Pop-up checkout solution in a real-world ecommerce scenario. The site features an elegant luxury perfume store with two premium fragrances, complete with:
